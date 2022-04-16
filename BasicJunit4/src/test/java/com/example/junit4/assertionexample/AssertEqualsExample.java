@@ -5,10 +5,20 @@ import org.junit.Test;
 
 public class AssertEqualsExample {
 
+    /**
+     * Assert.assertEquals examples
+     *
+     * actualData: Data return by calling the function on which we are doing test
+     * expectedData: Data which we expect should be return by the function on which we are doing test
+     */
     @Test
     public void testEqualParameters() {
         // compare string
-        Assert.assertEquals("test data", "test data");
+//        String actualData = null;
+//        String actualData = "";
+        String actualData = "test data";;
+        String expectedData = "test data";
+        Assert.assertEquals(expectedData, actualData);
 
         // compare integer
         Assert.assertEquals(123, 123);
@@ -20,9 +30,13 @@ public class AssertEqualsExample {
         Assert.assertEquals(20L, 20L);
     }
 
+    /**
+     * Assert.assertEquals examples with custom message
+     */
     @Test
     public void testEqualParametersWithMessages() {
         // compare string
+//        Assert.assertEquals("Data should match", null, "test data");
         Assert.assertEquals("Data should match", "test data", "test data");
 
         // compare integer

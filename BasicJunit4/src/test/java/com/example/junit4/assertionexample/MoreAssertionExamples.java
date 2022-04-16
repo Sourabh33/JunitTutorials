@@ -11,29 +11,34 @@ import static org.hamcrest.CoreMatchers.hasItem;
 
 public class MoreAssertionExamples {
 
-    @Test
-    public void testFailAssertion() {
-        Assert.fail();
+    public void methodsShouldThrowException() throws Exception {
+        // some codes
+        // uncomment below line for throwing exception by this method
+//        throw new Exception();
     }
 
+    /**
+     * Assert.fail example
+     */
     @Test
     public void testFailAssertionWithMessage() {
-        Assert.fail("Test Failed");
+        try {
+            methodsShouldThrowException();
+            Assert.fail("Exception must be thrown");
+        } catch (Exception ex) {
+            Assert.fail("Exception raised");
+        }
+
     }
 
-    @Test
-    public void testSameAssertion() {
-        Assert.assertSame("Hello World", "Hello World");
-    }
-
-    @Test
-    public void testNotSameAssertion() {
-        Assert.assertNotSame("Hello World", "Hello Junit");
-    }
-
+    /**
+     * Assert.assertThat example
+     *
+     * hasItem needs hamcrest-all library (check in pom.xml file)
+     */
     @Test
     public void testAssertThat() {
-        Assert.assertThat(Arrays.asList("One", "two", "three"), hasItem("One"));
+        Assert.assertThat(Arrays.asList("One", "two", "three"), hasItem("four"));
     }
 
 
