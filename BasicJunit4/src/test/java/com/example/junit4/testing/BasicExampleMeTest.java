@@ -12,6 +12,7 @@ public class BasicExampleMeTest {
         System.out.println("inside setup method");
     }
 
+    // testing print message method
     @Test
     public void testPrintMessageMethod() {
         String expectedMessage = "Hello World";

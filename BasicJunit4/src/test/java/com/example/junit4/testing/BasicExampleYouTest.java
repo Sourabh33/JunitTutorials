@@ -9,10 +9,11 @@ public class BasicExampleYouTest {
 
     @Before
     public void setUp() throws Exception {
+        // setup method
     }
 
     @Test
     public void testPrintMessageMethod() {
-
+        // try your own code
     }
 }
