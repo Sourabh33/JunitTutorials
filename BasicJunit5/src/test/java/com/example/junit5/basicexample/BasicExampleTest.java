@@ -1,10 +1,6 @@
 package com.example.junit5.basicexample;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class BasicExampleTest {
 
@@ -14,18 +10,37 @@ public class BasicExampleTest {
     }
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         System.out.println("-------Running set up method----------");
     }
 
     @Test
-    public void testExampleOne() {
+    public void basicExampleTest() {
         System.out.println("-------Running test One method----------");
     }
 
+    @Disabled(value = "This test is a disabled test")
     @Test
-    public void testExampleTwo() {
-        System.out.println("-------Running test Two method----------");
+    public void testDisableAnnotation() {
+        System.out.println("-------This line does not print---------");
+    }
+
+    @DisplayName("This test is a display tag test")
+    @Test
+    public void testDisplayAnnotation() {
+        System.out.println("-------This is a display name test---------");
+    }
+
+    @Tag("DEV")
+    @Test
+    public void testTagAnnotation1() {
+        System.out.println("-------This is a dev test---------");
+    }
+
+    @Tag("PROD")
+    @Test
+    public void testTagAnnotation2() {
+        System.out.println("-------This is a prod test---------");
     }
 
     @AfterEach
