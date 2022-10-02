@@ -35,6 +35,9 @@ public class AssertArrayEqualsExample {
         // compare string array
         Assertions.assertArrayEquals(new String[]{"test data"}, new String[]{"test data"}, "Array data should match");
 
+        // supplier message
+        Assertions.assertArrayEquals(new String[]{"test data"}, new String[]{"test data"}, () -> "Array data should match");
+
         // compare integer array
         Assertions.assertArrayEquals(Arrays.asList(123, 456).toArray(), Arrays.asList(123, 456).toArray(), "Array data should match");
 

@@ -21,7 +21,9 @@ public class AssertObjectExample {
     @Test
     public void testAssertNullWithMessage() {
         String object = null;
-        Assertions.assertNull(object, "Object is null");
+        Assertions.assertNull(object, "Object should be null");
+
+        Assertions.assertNull(object, () -> "Object should be null");
     }
 
     /**
@@ -39,13 +41,12 @@ public class AssertObjectExample {
     @Test
     public void testAssertFalseWithMessage() {
         String obj = "Hello junit test";
-        Assertions.assertNotNull(obj, "Object should ot be null");
-
+        Assertions.assertNotNull(obj, "Object should not be null");
     }
 
     /**
      * Assert.assertSame example
-     *
+     * <p>
      * Checking reference of str1 and str2 objects
      */
     @Test

@@ -20,6 +20,9 @@ public class AssertBooleanExample {
     @Test
     public void testAssertTrueWithMessage() {
         Assertions.assertTrue(2 > 0, "Condition should be true");
+
+        // supplier message
+        Assertions.assertTrue(2 > 0, () -> "Condition should be true");
     }
 
     /**

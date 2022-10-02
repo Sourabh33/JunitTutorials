@@ -15,10 +15,10 @@ public class AssertEqualsExample {
     @Test
     public void testEqualParameters() {
         // compare string
-//        String actualData = null;
-//        String actualData = "";
+        // String actualData = null;
+        // String actualData = "";
         String actualData = "test data";
-        ;
+
         String expectedData = "test data";
         Assertions.assertEquals(expectedData, actualData);
 
@@ -38,8 +38,11 @@ public class AssertEqualsExample {
     @Test
     public void testEqualParametersWithMessages() {
         // compare string
-//        Assert.assertEquals("Data should match", null, "test data");
+        // Assert.assertEquals("Data should match", null, "test data");
         Assertions.assertEquals("test data", "test data", "Data should match");
+
+        // supplier example
+        Assertions.assertEquals("test data", "test data", () -> "Data should match");
 
         // compare integer
         Assertions.assertEquals(123, 123, "Data should match");
