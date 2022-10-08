@@ -8,11 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BasicJunit5" />
         <module name="BasicJunit4" />
+        <module name="MockitoTests" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="BasicJunit4" target="1.8" />
-      <module name="BasicJunit5" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
