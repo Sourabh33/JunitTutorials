@@ -1,20 +1,20 @@
 package org.example;
 
-import java.util.List;
+import org.example.dao.DataRepository;
 
 public class DataService {
-    private final List<String> dataRepository;
+    private final DataRepository dataRepository;
 
-    public DataService(List<String> dataRepository) {
+    public DataService(DataRepository dataRepository) {
         this.dataRepository = dataRepository;
     }
 
     public boolean saveData(String value) {
-        return dataRepository.add(value);
+        return dataRepository.save(value);
     }
 
     public boolean hasData(String value) {
-        return dataRepository.contains(value);
+        return dataRepository.checkData(value);
     }
 
     public String getData(Integer index) {

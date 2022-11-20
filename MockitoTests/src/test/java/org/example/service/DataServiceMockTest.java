@@ -1,38 +1,36 @@
-package org.example.mock;
+package org.example.service;
 
 import org.example.DataService;
+import org.example.dao.DataRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 
 public class DataServiceMockTest {
 
-    private List<String> dataRepositoryMock;
+    private DataRepository dataRepositoryMock;
     private DataService service;
 
     @Before
     public void setUp() {
-        dataRepositoryMock = Mockito.mock(ArrayList.class);
+        dataRepositoryMock = Mockito.mock(DataRepository.class);
         service = new DataService(dataRepositoryMock);
     }
 
     @Test
     public void testSaveData() {
-        Mockito.when(dataRepositoryMock.add(anyString())).thenReturn(true);
+        Mockito.when(dataRepositoryMock.save(anyString())).thenReturn(true);
         boolean expectedResponse = service.saveData("test");
         Assert.assertTrue(expectedResponse);
     }
 
     @Test
     public void testHasData() {
-        Mockito.when(dataRepositoryMock.contains(anyString())).thenReturn(true);
+        Mockito.when(dataRepositoryMock.checkData(anyString())).thenReturn(true);
         boolean expectedResponse = service.hasData("test");
         Assert.assertTrue(expectedResponse);
     }
