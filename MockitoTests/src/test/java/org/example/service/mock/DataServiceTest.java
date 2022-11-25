@@ -1,21 +1,22 @@
-package org.example.service;
+package org.example.service.mock;
 
-import org.example.DataService;
 import org.example.dao.DataRepository;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.example.service.DataService;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 
-public class DataServiceMockTest {
+public class DataServiceTest {
 
     private DataRepository dataRepositoryMock;
     private DataService service;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         dataRepositoryMock = Mockito.mock(DataRepository.class);
         service = new DataService(dataRepositoryMock);
@@ -25,20 +26,20 @@ public class DataServiceMockTest {
     public void testSaveData() {
         Mockito.when(dataRepositoryMock.save(anyString())).thenReturn(true);
         boolean expectedResponse = service.saveData("test");
-        Assert.assertTrue(expectedResponse);
+        Assertions.assertTrue(expectedResponse);
     }
 
     @Test
     public void testHasData() {
         Mockito.when(dataRepositoryMock.checkData(anyString())).thenReturn(true);
         boolean expectedResponse = service.hasData("test");
-        Assert.assertTrue(expectedResponse);
+        Assertions.assertTrue(expectedResponse);
     }
 
     @Test
     public void testGetData() {
         Mockito.when(dataRepositoryMock.get(anyInt())).thenReturn("test");
         String expectedResponse = service.getData(0);
-        Assert.assertEquals(expectedResponse, "test");
+        Assertions.assertEquals(expectedResponse, "test");
     }
 }
