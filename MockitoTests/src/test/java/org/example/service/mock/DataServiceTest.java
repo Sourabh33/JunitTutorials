@@ -31,9 +31,12 @@ public class DataServiceTest {
 
     @Test
     public void testHasData() {
-        Mockito.when(dataRepositoryMock.checkData(anyString())).thenReturn(true);
+        service.saveData("test");
         boolean expectedResponse = service.hasData("test");
         Assertions.assertTrue(expectedResponse);
+//        Mockito.when(dataRepositoryMock.checkData(anyString())).thenReturn(true);
+//        boolean expectedResponse = service.hasData("test");
+//        Assertions.assertTrue(expectedResponse);
     }
 
     @Test
