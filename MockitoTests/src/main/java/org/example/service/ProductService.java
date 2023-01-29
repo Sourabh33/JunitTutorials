@@ -53,4 +53,9 @@ public class ProductService {
         ProductDetail productDetail = productDao.get(name);
         return productDetail.getDescription();
     }
+
+    public void deleteProduct(String name) {
+        log.info("deleting product with name: {}", name);
+        productDao.deleteByName(name);
+    }
 }

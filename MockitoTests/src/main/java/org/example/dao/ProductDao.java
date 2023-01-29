@@ -32,9 +32,16 @@ public class ProductDao {
 
     public void add(ProductDetail product) {
         productMapByName.put(product.getName(), product);
+        productMapById.put(product.getId(), product);
     }
 
     public ProductDetail getById(Integer productId) {
         return productMapById.get(productId);
+    }
+
+    public void deleteByName(String productName) {
+        if (productMapByName.containsKey(productName)) {
+            productMapByName.remove(get(productName).getName());
+        }
     }
 }
