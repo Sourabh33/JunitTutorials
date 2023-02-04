@@ -54,8 +54,13 @@ public class ProductService {
         return productDetail.getDescription();
     }
 
-    public void deleteProduct(String name) {
+    public void deleteProduct() {
+        String name = getProductDetailName();
         log.info("deleting product with name: {}", name);
         productDao.deleteByName(name);
+    }
+
+    private String getProductDetailName() {
+        return "product-name";
     }
 }

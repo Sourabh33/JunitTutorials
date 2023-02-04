@@ -25,6 +25,13 @@ public class ArgumentCaptureExample {
 
     @Test
     public void testDeleteProductWithArgumentCapture() {
+        ArgumentCaptor<String> nameArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
+        service.deleteProduct();
+
+        Mockito.verify(productDao).deleteByName(nameArgumentCaptor.capture());
+        String value = nameArgumentCaptor.getValue();
+
+        Assertions.assertEquals("product-name", value);
     }
 }
