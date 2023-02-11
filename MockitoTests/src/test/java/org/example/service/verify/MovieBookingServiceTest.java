@@ -5,22 +5,47 @@ import org.example.service.EmailService;
 import org.example.service.MovieBookingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 
+/**
+ * Verify Examples
+ * <p>
+ * verifySimple
+ * verifyWithTimesExample
+ * verifyWithAtLeastOnceExample
+ * verifyWithAtLeastExample
+ * verifyWithAtMostOnceExample
+ * verifyWithAtMostExample
+ * verifyWithNeverExample
+ * verifyWithNoInteractionsExample
+ * verifyWithOnlyExample
+ * verifyWithInOrderExample
+ */
 class MovieBookingServiceTest {
     @Mock
     EmailService emailService;
     @Mock
     BookingDao bookingDao;
+    @InjectMocks
     MovieBookingService bookingService;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        bookingService = new MovieBookingService(bookingDao, emailService);
+    }
+
+    /**
+     * Verify simple()
+     */
+    @Test
+    public void verifySimple() {
+        bookingService.doBooking("Avatar: The Way of Water", "PVR Cinemas");
     }
 
     /**

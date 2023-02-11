@@ -22,7 +22,7 @@ public class MovieBookingService {
     private BookingDetail getBookingDetail(String movieName, String theater) {
         return BookingDetail.builder()
                 .id(new Random().nextInt(100))
-                .seatNum(String.valueOf(new Random().ints(0, 100).findAny().getAsInt()))
+                .seatNum(String.valueOf(new Random().ints(0, 100).findAny().orElse(0)))
                 .movieName(movieName)
                 .theater(theater)
                 .address("Address")
