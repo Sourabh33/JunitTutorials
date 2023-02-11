@@ -11,4 +11,8 @@ public class BookingDao {
     public void save(BookingDetail detail) {
         data.add(detail);
     }
+
+    public List<BookingDetail> getAll() {
+        return data;
+    }
 }

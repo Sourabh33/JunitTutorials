@@ -1,10 +1,12 @@
 package org.example.service.verify;
 
+import org.example.BookingDetail;
 import org.example.dao.BookingDao;
 import org.example.service.EmailService;
 import org.example.service.MovieBookingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -46,6 +48,7 @@ class MovieBookingServiceTest {
     @Test
     public void verifySimple() {
         bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verify(bookingDao).save(any(BookingDetail.class));
     }
 
     /**
@@ -53,6 +56,9 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithTimesExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        bookingService.doBooking("Avengers: EndGame", 5);
+        Mockito.verify(bookingDao, Mockito.times(2)).save(any(BookingDetail.class));
     }
 
     /**
@@ -60,6 +66,8 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithAtLeastOnceExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verify(bookingDao, Mockito.atLeastOnce()).save(any(BookingDetail.class));
     }
 
     /**
@@ -67,6 +75,8 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithAtLeastExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verify(bookingDao, Mockito.atLeast(1)).save(any(BookingDetail.class));
     }
 
     /**
@@ -74,6 +84,8 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithAtMostOnceExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verify(emailService, Mockito.atMostOnce()).sendEmail();
     }
 
     /**
@@ -81,6 +93,8 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithAtMostExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verify(emailService, Mockito.atMost(1)).sendEmail();
     }
 
     /**
@@ -88,6 +102,8 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithNeverExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verify(bookingDao, Mockito.never()).getAll();
     }
 
     /**
@@ -95,6 +111,9 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithNoInteractionsExample() {
+        Mockito.verifyNoInteractions(bookingDao, emailService);
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verifyNoInteractions(bookingDao, emailService);
     }
 
     /**
@@ -102,6 +121,8 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithOnlyExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        Mockito.verify(bookingDao, Mockito.only()).save(any(BookingDetail.class));
     }
 
     /**
@@ -109,5 +130,9 @@ class MovieBookingServiceTest {
      */
     @Test
     void verifyWithInOrderExample() {
+        bookingService.doBooking("Avatar: The Way of Water", 2);
+        InOrder inOrder = Mockito.inOrder(bookingDao, emailService);
+        inOrder.verify(emailService).sendEmail();
+        inOrder.verify(bookingDao).save(any());
     }
 }
