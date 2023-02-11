@@ -45,7 +45,7 @@ class MovieBookingServiceTest {
      */
     @Test
     public void verifySimple() {
-        bookingService.doBooking("Avatar: The Way of Water", "PVR Cinemas");
+        bookingService.doBooking("Avatar: The Way of Water", 2);
     }
 
     /**

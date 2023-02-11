@@ -9,6 +9,7 @@ public class BookingDetail {
     Integer id;
     String movieName;
     String seatNum;
+    Integer numberOfTickets;
     String theater;
     String address;
 }

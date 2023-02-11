@@ -14,17 +14,18 @@ public class MovieBookingService {
         this.bookingDao = bookingDao;
     }
 
-    public void doBooking(String movieName, String theater) {
-        bookingDao.save(getBookingDetail(movieName, theater));
+    public void doBooking(String movieName, Integer numberOfTickets) {
+        bookingDao.save(getBookingDetail(movieName, numberOfTickets));
         emailService.sendEmail();
     }
 
-    private BookingDetail getBookingDetail(String movieName, String theater) {
+    private BookingDetail getBookingDetail(String movieName, Integer numberOfTickets) {
         return BookingDetail.builder()
                 .id(new Random().nextInt(100))
                 .seatNum(String.valueOf(new Random().ints(0, 100).findAny().orElse(0)))
                 .movieName(movieName)
-                .theater(theater)
+                .numberOfTickets(numberOfTickets)
+                .theater("theaterName")
                 .address("Address")
                 .build();
     }
