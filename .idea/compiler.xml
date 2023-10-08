@@ -12,5 +12,13 @@
         <module name="MockitoTests" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AdvancedDataStructure" target="11" />
+      <module name="AdvancedDataStructure.BinarySearchTree" target="11" />
+      <module name="AdvancedDataStructure.BinarySearchTree.main" target="11" />
+      <module name="AdvancedDataStructure.BinarySearchTree.test" target="11" />
+      <module name="AdvancedDataStructure.main" target="11" />
+      <module name="AdvancedDataStructure.test" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
