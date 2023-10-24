@@ -57,6 +57,23 @@ public class CheckoutServiceTest {
     }
 
     @Test
+    void testGetFinalPaymentWithArguments() {
+        try (MockedConstruction<BookingPaymentProcessor> mocked = Mockito.mockConstruction(BookingPaymentProcessor.class)) {
+            BookingPaymentProcessor paymentProcessor1 = new BookingPaymentProcessor("testType1", 10.0);
+            BookingPaymentProcessor paymentProcessor2 = new BookingPaymentProcessor("testType2", 10.0);
+
+            Mockito.when(paymentProcessor1.getFinalPayment(anyString(), any())).thenReturn(BigDecimal.TEN);
+            Mockito.when(paymentProcessor2.getFinalPayment(anyString(), any())).thenReturn(BigDecimal.ZERO);
+
+            Assertions.assertEquals(BigDecimal.TEN, paymentProcessor1.getFinalPayment("10", BigDecimal.valueOf(100)));
+            Assertions.assertEquals(BigDecimal.ZERO, paymentProcessor2.getFinalPayment("10", BigDecimal.valueOf(40)));
+
+            List<BookingPaymentProcessor> constructed = mocked.constructed();
+            Assertions.assertEquals(2, constructed.size());
+        }
+    }
+
+    @Test
     void testGetFinalPaymentWithMockConstructionAnswers() {
         try (MockedConstruction<BookingPaymentProcessor> mocked = Mockito.mockConstructionWithAnswer(BookingPaymentProcessor.class,
                 invocation -> BigDecimal.valueOf(500),
